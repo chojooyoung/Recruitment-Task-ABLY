@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import NotFound from "@/views/NotFound.vue";
 import Home from "@/views/Home.vue";
+import loginRoutes from "@/router/login";
 
 let routes = [
   {
@@ -14,7 +15,7 @@ let routes = [
     component: NotFound,
   },
 ];
-routes = [].concat(routes);
+routes = [].concat(routes, loginRoutes);
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

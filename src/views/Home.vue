@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <HelloWorld />
+    <router-link to="/login" data-test="router-login">로그인하기</router-link>
   </div>
 </template>
 

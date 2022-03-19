@@ -34,6 +34,7 @@
 
 <script>
 import RepositoryFactory from "@/api/RepositoryFactory";
+import storage from "@/utils/sessionStorage";
 
 const loginRepository = RepositoryFactory.get("login");
 export default {
@@ -56,6 +57,8 @@ export default {
       if (response.status === 200) {
         // eslint-disable-next-line no-alert
         alert("로그인성공!");
+        storage.setItem("token", response.data.accessToken);
+        this.$router.push("/userinfo");
       } else {
         // eslint-disable-next-line no-alert
         alert(`${response.data.error.message}`);

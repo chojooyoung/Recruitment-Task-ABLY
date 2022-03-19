@@ -1,14 +1,23 @@
-import { mount } from "@vue/test-utils";
+import { mount, flushPromises } from "@vue/test-utils";
 import Login from "@/components/LoginComponent.vue";
 import loginApiFunctions from "@/api/repositories/Login";
 
 describe("LoginPage", () => {
   let wrapper;
+  const mockRouter = {
+    push: jest.fn(),
+  };
   beforeEach(() => {
     const res = {
       status: 200,
     };
-    wrapper = mount(Login);
+    wrapper = mount(Login, {
+      global: {
+        mocks: {
+          $router: mockRouter,
+        },
+      },
+    });
     loginApiFunctions.requestLogin = jest.fn().mockResolvedValue(res);
   });
 
@@ -44,5 +53,14 @@ describe("LoginPage", () => {
     jest.spyOn(window, "alert").mockImplementation(() => { });
     await wrapper.find("[data-test=\"login_button\"]").trigger("click");
     await expect(window.alert).toBeCalled;
+  });
+
+  it("mocking한 router함수로 라우팅이 잘 동작하는가에 대한 테스트", async () => {
+    await loginApiFunctions.requestLogin();
+    await wrapper.find("[data-test=\"login_button\"]").trigger("click");
+    setTimeout(() => {
+      expect(mockRouter.push).toHaveBeenCalledTimes(1);
+      expect(mockRouter.push).toHaveBeenCalledWith("/userinfo");
+    }, 100);
   });
 });

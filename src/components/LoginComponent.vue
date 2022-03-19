@@ -3,7 +3,7 @@
     <h1>환영합니다! 로그인을 해주세요!</h1>
     <div class="form-wrapper">
       <h2 class="form-wrapper_header">로그인</h2>
-      <form class="login-form" @submit="loginButtonClick">
+      <form class="login-form" @submit.prevent="loginButtonClick()">
         <input
           class="login-form-email"
           v-model="email"
@@ -18,13 +18,14 @@
           name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
+          autoComplete="on"
           required
         />
-        <button class="login-form-loginbutton">
+        <button class="login-form-loginbutton" data-test="login_button">
           로그인 하기
         </button>
       </form>
-      <button class="login-form-reset_password">
+      <button class="reset_password">
           비밀번호 재설정하기
       </button>
     </div>
@@ -32,6 +33,9 @@
 </template>
 
 <script>
+import RepositoryFactory from "@/api/RepositoryFactory";
+
+const loginRepository = RepositoryFactory.get("login");
 export default {
   name: "LoginComponent",
   data() {
@@ -39,6 +43,24 @@ export default {
       email: "",
       password: "",
     };
+  },
+  methods: {
+    async loginButtonClick() {
+      const userData = {
+        email: this.email,
+        password: this.password,
+      };
+      const response = await loginRepository.requestLogin(userData);
+      console.log(response);
+      // eslint-disable-next-line no-unused-expressions
+      if (response.status === 200) {
+        // eslint-disable-next-line no-alert
+        alert("로그인성공!");
+      } else {
+        // eslint-disable-next-line no-alert
+        alert(`${response.data.error.message}`);
+      }
+    },
   },
 };
 </script>
@@ -82,7 +104,7 @@ export default {
     cursor: pointer;
   }
 }
-.login-form-reset_password{
+.reset_password{
     align-self: center;
     max-width:150px;
     width:100%;

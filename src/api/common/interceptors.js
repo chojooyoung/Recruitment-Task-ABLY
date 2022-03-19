@@ -1,3 +1,14 @@
+const convertResponse = (res) => {
+  const response = {
+    status: "",
+    data: null,
+  };
+  response.status = res.status;
+  response.data = res.data;
+
+  return response;
+};
+
 // eslint-disable-next-line import/prefer-default-export
 export function setInterceptors(instance) {
   instance.interceptors.request.use(
@@ -10,19 +21,18 @@ export function setInterceptors(instance) {
       return config;
     },
     (error) => {
-      console.log("error 확인", error);
-      // error 처리
-      return Promise.reject(error);
-    }
+      Promise.reject(error);
+      return convertResponse(error.response);
+    },
   );
 
   instance.interceptors.response.use(
     // response interceptor
     (response) => response,
     (error) => {
-      console.log("error 확인", error);
-      return Promise.reject(error);
-    }
+      Promise.reject(error);
+      return convertResponse(error.response);
+    },
   );
   return instance;
 }

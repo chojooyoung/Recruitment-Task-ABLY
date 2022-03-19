@@ -1,7 +1,7 @@
-import ItemRepository from "./repositories/Login";
+import LoginRepository from "./repositories/Login";
 
 const repositories = {
-  items: ItemRepository,
+  login: LoginRepository,
 };
 export default {
   get: (name) => repositories[name],

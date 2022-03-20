@@ -25,7 +25,7 @@
           로그인 하기
         </button>
       </form>
-      <button class="reset_password">
+      <button class="reset_password" @click="resetPwClick">
           비밀번호 재설정하기
       </button>
     </div>
@@ -66,6 +66,9 @@ export default {
         // eslint-disable-next-line no-alert
         alert(`${response.data.error.message}`);
       }
+    },
+    resetPwClick() {
+      this.$router.push("/checkEmailPage");
     },
   },
 };

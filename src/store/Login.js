@@ -20,6 +20,7 @@ export default {
       state.authToken = authToken;
     },
     clearAuthToken(state) {
+      storage.removeItem("authToken");
       state.authToken = "";
     },
   },
@@ -29,7 +30,7 @@ export default {
       commit("setAuthToken", storage.getItem("authToken"));
     },
     initClearAuthToken({ commit }) {
-      commit("clearAuthToken", storage.removeItem("authToken"));
+      commit("clearAuthToken");
     },
   },
 };

@@ -33,9 +33,11 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
 import RepositoryFactory from "@/api/RepositoryFactory";
 import storage from "@/utils/sessionStorage";
 
+const { mapActions } = createNamespacedHelpers("Login");
 const loginRepository = RepositoryFactory.get("login");
 export default {
   name: "LoginComponent",
@@ -46,6 +48,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["initSetAuthToken"]),
     async loginButtonClick() {
       const userData = {
         email: this.email,
@@ -57,7 +60,8 @@ export default {
       if (response.status === 200) {
         // eslint-disable-next-line no-alert
         alert("로그인성공!");
-        storage.setItem("token", response.data.accessToken);
+        storage.setItem("authToken", response.data.accessToken);
+        this.initSetAuthToken();
         this.$router.push("/userinfo");
       } else {
         // eslint-disable-next-line no-alert

@@ -1,3 +1,5 @@
+import store from "@/store/index";
+
 const convertResponse = (res) => {
   const response = {
     status: "",
@@ -15,9 +17,9 @@ export function setInterceptors(instance) {
     // request interceptor
     (config) => {
       // request 보내기 전에 할 로직
-      const API_AUTH = "";
+      const APITOKEN = store.state.Login.authToken;
       // eslint-disable-next-line no-param-reassign
-      config.headers.Authorization = API_AUTH; // header에 인증 추가
+      config.headers.Authorization = `Bearer ${APITOKEN}`; // header에 인증 추가
       return config;
     },
     (error) => {

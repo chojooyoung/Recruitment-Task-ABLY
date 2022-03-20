@@ -1,6 +1,7 @@
 import { mount, flushPromises } from "@vue/test-utils";
 import UserInfo from "@/components/UserInfoComponent.vue";
 import userInfoApiFunctions from "@/api/repositories/UserInfo";
+import store from "@/store/index";
 
 describe("LoginPage", () => {
   let wrapper;
@@ -22,6 +23,7 @@ describe("LoginPage", () => {
     };
     wrapper = mount(UserInfo, {
       global: {
+        plugins: [store],
         mocks: {
           $router: mockRouter,
         },

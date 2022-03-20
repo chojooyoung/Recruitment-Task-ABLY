@@ -6,4 +6,7 @@ export default {
   requestAuthCodeToResetPw(params) {
     return Client.get(`${resource}`, { params });
   },
+  checkAuthCode(authData) {
+    return Client.post(`${resource}`, authData);
+  },
 };

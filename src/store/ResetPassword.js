@@ -4,22 +4,34 @@ export default {
   namespaced: true,
   state() {
     return {
+      userEmail: storage.getItem("userEmail") || "",
       issueToken: storage.getItem("issueToken") || "",
       expireTime: storage.getItem("expireTime") || "",
+      confirmToken: storage.getItem("confirmToken") || "",
     };
   },
   getters: {
+    getUserEmail(state) {
+      return state.userEmail;
+    },
     getIssueToken(state) {
       return state.issueToken;
     },
     getexpireTime(state) {
-      return state.issueToken;
+      return state.expireTime;
     },
-    isLogin(state) {
-      return state.authToken !== "";
+    getConfirmToken(state) {
+      return state.confirmToken;
     },
   },
   mutations: {
+    setUserEmail(state, userEmail) {
+      state.userEmail = userEmail;
+    },
+    clearUserEmail(state) {
+      state.userEmail = "";
+      storage.removeItem("userEmail");
+    },
     setIssueToken(state, issueToken) {
       state.issueToken = issueToken;
     },
@@ -34,8 +46,21 @@ export default {
       state.expireTime = "";
       storage.removeItem("expireTime");
     },
+    setConfirmToken(state, confirmToken) {
+      state.confirmToken = confirmToken;
+    },
+    clearConfirmToken(state) {
+      state.expireTime = "";
+      storage.removeItem("confirmToken");
+    },
   },
   actions: {
+    initSetUserEmail({ commit }) {
+      commit("setExpireTime", storage.getItem("expireTime"));
+    },
+    initClearUserEmail({ commit }) {
+      commit("clearExpireTime");
+    },
     initSetIssueToken({ commit }) {
       console.log(storage.getItem("issueToken"));
       commit("setIssueToken", storage.getItem("issueToken"));
@@ -45,6 +70,15 @@ export default {
     },
     initSetExpireTime({ commit }) {
       commit("setExpireTime", storage.getItem("expireTime"));
+    },
+    initclearExpireTime({ commit }) {
+      commit("clearExpireTime");
+    },
+    initSetConfirmToken({ commit }) {
+      commit("setConfirmToken", storage.getItem("confirmToken"));
+    },
+    initClearConfirmToken({ commit }) {
+      commit("clearConfirmToken");
     },
   },
 };

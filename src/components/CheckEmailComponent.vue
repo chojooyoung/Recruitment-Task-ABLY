@@ -37,7 +37,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["initSetIssueToken", "initSetExpireTime"]),
+    ...mapActions(["initSetUserEmail", "initSetIssueToken", "initSetExpireTime"]),
     async nextButtonClick() {
       const params = { email: this.userEmail };
       const response = await resetPwRepository.requestAuthCodeToResetPw(params);
@@ -46,6 +46,8 @@ export default {
         alert("인증번호를 성공적으로 보냈습니다!");
         storage.setItem("issueToken", response.data.issueToken);
         storage.setItem("expireTime", response.data.remainMillisecond);
+        storage.setItem("userEmail", this.userEmail);
+        this.initSetUserEmail();
         this.initSetIssueToken();
         this.initSetExpireTime();
         this.$router.push("/checkAuthCode");

@@ -67,9 +67,8 @@ export default {
   },
   async created() {
     const response = await userInfoRepository.getUserInfo();
-    // 로그인성공
+    // 인증성공
     if (response.status === 200) {
-      console.log(response);
       this.userName = response.data.name;
       this.userEmail = response.data.email;
       this.userProfileImage = response.data.profileImage;

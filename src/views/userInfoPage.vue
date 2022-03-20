@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import UserInfoComponent from "@/components/userInfoComponent.vue";
+import UserInfoComponent from "@/components/UserInfoComponent.vue";
 
 export default {
-  name: "userInfoPage",
+  name: "UserInfoPage",
   components: {
     UserInfoComponent,
   },

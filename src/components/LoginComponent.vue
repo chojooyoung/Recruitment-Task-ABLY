@@ -55,7 +55,6 @@ export default {
         password: this.password,
       };
       const response = await loginRepository.requestLogin(userData);
-      console.log(response);
       // eslint-disable-next-line no-unused-expressions
       if (response.status === 200) {
         // eslint-disable-next-line no-alert

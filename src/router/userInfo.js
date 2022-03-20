@@ -1,4 +1,4 @@
-import userInfoPage from "@/views/userInfoPage.vue";
+import userInfoPage from "@/views/UserInfoPage.vue";
 
 const userInfoRoutes = [
 

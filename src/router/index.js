@@ -3,6 +3,7 @@ import NotFound from "@/views/NotFound.vue";
 import Home from "@/views/Home.vue";
 import userInfoRoutes from "@/router/userInfo";
 import loginRoutes from "@/router/login";
+import ResetPassword from "@/router/ResetPassword";
 
 let routes = [
   {
@@ -16,7 +17,7 @@ let routes = [
     component: NotFound,
   },
 ];
-routes = [].concat(routes, loginRoutes, userInfoRoutes);
+routes = [].concat(routes, loginRoutes, userInfoRoutes, ResetPassword);
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

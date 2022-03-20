@@ -97,7 +97,7 @@ export default {
     border:solid 0.1px black;
     flex-wrap: wrap;
     gap:20px;
-    @media (max-width:450px){
+    @media (max-width:500px){
         justify-content: center;
         height: 400px;
     }
@@ -107,11 +107,35 @@ export default {
         height:200px;
     }
     &-subInfo{
+        display: block;
+        max-width: 250px;
+        width:100%;
         align-self: center;
         text-align: center;
         font-size: 20px;
         text-align: left;
+        .user_info-card-name{
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+        }
+        .user_info-card-email{
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+        }
+
     }
+}
+.logout-button{
+  max-width:100px;
+  width:100%;
+  height:25px;
+  background: black;
+  color: white;
+  border:solid 0.1px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 </style>

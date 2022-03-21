@@ -1,8 +1,14 @@
 import { mount, flushPromises } from "@vue/test-utils";
-import router from "@/router/index";
+import { createRouter, createWebHistory } from "vue-router";
+import loginRoutes from "@/router/login";
 import App from "@/App.vue";
 import Home from "@/views/Home.vue";
 import store from "@/store/index";
+
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes: loginRoutes,
+});
 
 describe("Home(Route Page)", () => {
   let wrapper;

@@ -1,5 +1,6 @@
 import CheckEmailPage from "@/views/CheckEmailPage.vue";
 import CheckAuthCodePage from "@/views/CheckAuthCodePage.vue";
+import ResetPasswordPage from "@/views/ResetPasswordPage.vue";
 
 const userInfoRoutes = [
 
@@ -13,6 +14,11 @@ const userInfoRoutes = [
     path: "/checkAuthCode",
     name: "CheckAuthCodePage",
     component: CheckAuthCodePage,
+  },
+  {
+    path: "/resetPw",
+    name: "ResetPasswordPage",
+    component: ResetPasswordPage,
   },
 
 ];

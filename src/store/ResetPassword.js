@@ -56,13 +56,12 @@ export default {
   },
   actions: {
     initSetUserEmail({ commit }) {
-      commit("setExpireTime", storage.getItem("expireTime"));
+      commit("setUserEmail", storage.getItem("userEmail"));
     },
     initClearUserEmail({ commit }) {
-      commit("clearExpireTime");
+      commit("clearUserEmail");
     },
     initSetIssueToken({ commit }) {
-      console.log(storage.getItem("issueToken"));
       commit("setIssueToken", storage.getItem("issueToken"));
     },
     initClearIssueToken({ commit }) {
@@ -79,6 +78,12 @@ export default {
     },
     initClearConfirmToken({ commit }) {
       commit("clearConfirmToken");
+    },
+    initClearAlltoken({ commit }) {
+      commit("clearConfirmToken");
+      commit("clearExpireTime");
+      commit("clearIssueToken");
+      commit("clearUserEmail");
     },
   },
 };

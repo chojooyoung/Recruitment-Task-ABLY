@@ -9,4 +9,7 @@ export default {
   checkAuthCode(authData) {
     return Client.post(`${resource}`, authData);
   },
+  requestResetPassWord(resetData) {
+    return Client.patch(`${resource}`, resetData);
+  },
 };

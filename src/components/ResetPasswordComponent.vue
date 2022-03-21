@@ -1,8 +1,8 @@
 <template>
-  <div class="Login">
+  <div class="reset-password">
     <div class="form-wrapper">
       <h2 class="form-wrapper_header">비밀번호 변경</h2>
-      <form class="reset-password-form">
+      <form class="reset-password-form" @submit.prevent="resetButtonClick">
         <div class="reset-password-form-first_title">바꾸실 비밀번호</div>
         <input
           class="reset-password-form-password"
@@ -23,7 +23,7 @@
           autoComplete="on"
           required
         />
-        <button class="reset-password-form-reset_button" data-test="login_button">
+        <button class="reset-password-form-reset_button" data-test="reset_button">
           비밀번호 변경하기
         </button>
       </form>
@@ -32,8 +32,50 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+import RepositoryFactory from "@/api/RepositoryFactory";
+
+const resetPwRepository = RepositoryFactory.get("resetPassword");
+
+const { mapActions, mapGetters } = createNamespacedHelpers("ResetPassword");
+
 export default {
-  name: "LoginComponent",
+  name: "ResetPasswordComponent",
+  data() {
+    return {
+      password: "",
+      confirmPassword: "",
+    };
+  },
+  methods: {
+    ...mapActions(["initClearAlltoken"]),
+    ...mapGetters(["getUserEmail", "getConfirmToken"]),
+    async resetButtonClick() {
+      if (this.password !== this.confirmPassword) {
+        // eslint-disable-next-line no-alert
+        alert("비밀번호가 일치하지 않아요");
+        return;
+      }
+      const resetData = {
+        email: this.getUserEmail(),
+        confirmToken: this.getConfirmToken(),
+        newPassword: this.password,
+        newPasswordConfirm: this.confirmPassword,
+      };
+      const response = await resetPwRepository.requestResetPassWord(resetData);
+      // eslint-disable-next-line no-unused-expressions
+      console.log(response);
+      if (response.status === 200) {
+        // eslint-disable-next-line no-alert
+        alert("정상적으로 변경 되었습니다!");
+        this.initClearAlltoken();
+        this.$router.push("/login");
+      } else {
+        // eslint-disable-next-line no-alert
+        alert(`${response.data.error.message}`);
+      }
+    },
+  },
 };
 </script>
 
@@ -79,7 +121,7 @@ export default {
     border-radius: 10px;
   }
   &-reset_button{
-    max-width:100px;
+    max-width:200px;
     width:100%;
     height:25px;
     background: black;

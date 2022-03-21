@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      pageName: "비밀번호 변경하기",
+      pageName: "비밀번호 변경하기 - 이메일 입력",
     };
   },
 };

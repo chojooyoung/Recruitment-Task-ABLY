@@ -26,7 +26,6 @@ export default {
   },
   actions: {
     initSetAuthToken({ commit }) {
-      console.log(storage.getItem("authToken"));
       commit("setAuthToken", storage.getItem("authToken"));
     },
     initClearAuthToken({ commit }) {

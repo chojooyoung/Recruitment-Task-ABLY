@@ -11,9 +11,10 @@
           type="password"
           placeholder="비밀번호를 입력해주세요"
           autoComplete="on"
+          maxlength="30"
           required
         />
-        <div class="reset-password-form-second-title">비밀번호 재입력</div>
+        <div class="reset-password-form-second_title">비밀번호 재입력</div>
         <input
           class="reset-password-form-confirmpassword"
           v-model="confirmPassword"
@@ -21,6 +22,7 @@
           type="password"
           placeholder="비밀번호를 다시한번 입력해주세요."
           autoComplete="on"
+          maxlength="30"
           required
         />
         <button class="reset-password-form-reset_button" data-test="reset_button">
@@ -64,7 +66,6 @@ export default {
       };
       const response = await resetPwRepository.requestResetPassWord(resetData);
       // eslint-disable-next-line no-unused-expressions
-      console.log(response);
       if (response.status === 200) {
         // eslint-disable-next-line no-alert
         alert("정상적으로 변경 되었습니다!");
@@ -100,7 +101,7 @@ export default {
     width:100%;
     text-align: left;
   }
-  &-second-title{
+  &-second_title{
     font-weight: bold;
     max-width:300px;
     width:100%;

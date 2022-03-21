@@ -1,4 +1,4 @@
-import { mount, flushPromises } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import CheckEmailComponent from "@/components/CheckEmailComponent.vue";
 import resetPwApiFunctions from "@/api/repositories/ResetPassword";
 import store from "@/store/index";

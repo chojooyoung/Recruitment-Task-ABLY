@@ -4,14 +4,17 @@
     <div class="form-wrapper">
       <h2 class="form-wrapper_header">로그인</h2>
       <form class="login-form" @submit.prevent="loginButtonClick()">
+        <div class="login-form-first_title">이메일</div>
         <input
           class="login-form-email"
           v-model="email"
           name="email"
           type="text"
           placeholder="이메일을 입력해주세요"
+          maxlength="30"
           required
         />
+        <div class="login-form-second_title">비밀번호</div>
         <input
           class="login-form-password"
           v-model="password"
@@ -19,6 +22,7 @@
           type="password"
           placeholder="비밀번호를 입력해주세요"
           autoComplete="on"
+          maxlength="30"
           required
         />
         <button class="login-form-loginbutton" data-test="login_button">
@@ -88,6 +92,18 @@ export default {
   gap:10px;
   flex-direction: column;
   justify-content: center;
+    &-first_title{
+    font-weight: bold;
+    max-width:300px;
+    width:100%;
+    text-align: left;
+  }
+  &-second_title{
+    font-weight: bold;
+    max-width:300px;
+    width:100%;
+    text-align: left;
+  }
   &-email{
     max-width:300px;
     width:100%;

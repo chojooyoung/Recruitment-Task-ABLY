@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      pageName: "비밀번호 변경하기-비밀번호 확인",
+      pageName: "비밀번호 변경하기 - 비밀번호 확인",
     };
   },
 };

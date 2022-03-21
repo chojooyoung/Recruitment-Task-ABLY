@@ -1,4 +1,4 @@
-import { mount, flushPromises } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import Login from "@/components/LoginComponent.vue";
 import loginApiFunctions from "@/api/repositories/Login";
 

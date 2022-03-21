@@ -7,6 +7,7 @@
           name="email"
           type="text"
           placeholder="이메일을 입력해주세요"
+          maxlength="30"
           required
         />
         <button
@@ -61,4 +62,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.reset-password-form-nextbutton{
+    max-width:50px;
+    width:100%;
+    height:25px;
+    background: black;
+    color: white;
+    border:solid 0.1px;
+    border-radius: 10px;
+    cursor: pointer;
+}
 </style>

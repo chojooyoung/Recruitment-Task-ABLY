@@ -1,4 +1,4 @@
-import { mount, flushPromises } from "@vue/test-utils";
+import { mount } from "@vue/test-utils";
 import { createStore } from "vuex";
 import ResetPasswordComponent from "@/components/ResetPasswordComponent.vue";
 import resetPwApiFunctions from "@/api/repositories/ResetPassword";
